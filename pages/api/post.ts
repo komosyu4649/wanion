@@ -1,7 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import prisma from '../../lib/prisma';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
@@ -19,6 +17,7 @@ async function addPost(req: NextApiRequest, res: NextApiResponse) {
     const newEntry = await prisma.post.create({
       data: {
         title: body.title,
+        url: body.url,
         content: body.content
       }
     });

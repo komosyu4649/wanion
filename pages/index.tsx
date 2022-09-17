@@ -1,16 +1,15 @@
-import { PrismaClient } from '@prisma/client';
 import { GetServerSideProps, NextPage } from 'next';
+import prisma from '../lib/prisma';
 import Timeline from '../components/Timeline';
 import { postType } from '../type';
-
-const prisma = new PrismaClient();
 
 const Home: NextPage<postType> = ({ posts }: postType) => {
   // console.log(1, posts);
   return (
-    <>
+    <div className="flex justify-center">
       <Timeline posts={posts} />
-    </>
+      <div className="text-blue-500">www</div>
+    </div>
   );
 };
 
@@ -21,6 +20,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     select: {
       id: true,
       title: true,
+      url: true,
       content: true
     }
   });

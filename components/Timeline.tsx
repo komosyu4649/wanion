@@ -4,8 +4,8 @@ import PostItem from './PostItem';
 
 const Timeline = ({ posts }: allPostsType) => {
   return (
-    <div>
-      <ul>
+    <div className="w-5/12">
+      <ul className="grid gap-y-6">
         {posts.map((post: postType) => (
           <PostItem post={post} />
         ))}
