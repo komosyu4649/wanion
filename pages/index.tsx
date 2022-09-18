@@ -2,13 +2,13 @@ import { GetServerSideProps, NextPage } from 'next';
 import prisma from '../lib/prisma';
 import Timeline from '../components/Timeline';
 import { allPostsType } from '../type';
+import { Layout } from '../components/Layout';
 
 const Home: NextPage<allPostsType> = ({ posts }: allPostsType) => {
-  console.log(posts);
   return (
-    <div className="flex justify-center">
+    <Layout title="top">
       <Timeline posts={posts} />
-    </div>
+    </Layout>
   );
 };
 

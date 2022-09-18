@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { Layout } from './Layout';
 
 export const PostForm = () => {
   const [title, setTitle] = useState('');
@@ -65,50 +66,65 @@ export const PostForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={(e) => handleSubmit(e)} action="" method="POST" className="">
+    <Layout title="form">
+      <form onSubmit={(e) => handleSubmit(e)} action="" method="POST" className="rounded-xl bg-zinc-700 p-10">
         {/*  */}
-        <div className="">
-          <label htmlFor="category">category</label>
+        <div className="flex flex-col">
+          <label className="text-xl text-white" htmlFor="category">
+            カテゴリー
+          </label>
+          <select className="mt-2 h-10" name="category" id="category" onChange={(e) => setCategory(e.target.value)}>
+            <option value="">--choose category--</option>
+            <option value="JOBCHANGE">転職</option>
+            <option value="INVEST">投資</option>
+          </select>
         </div>
-        {/* <div className="">
-          <input
-            onChange={(e) => setCategories(e.target.value)}
-            name="categories"
-            id="categories"
-            type="text"
-            className=""
+        {/*  */}
+        <div className="mt-8">
+          <label className="text-xl text-white" htmlFor="title">
+            タイトル
+          </label>
+          <div className="mt-2">
+            <input
+              onChange={(e) => setTitle(e.target.value)}
+              name="title"
+              id="title"
+              type="text"
+              className="h-10 w-full p-3"
+            />
+          </div>
+        </div>
+        {/*  */}
+        <div className="mt-8">
+          <label className="text-xl text-white" htmlFor="url">
+            参考url
+          </label>
+        </div>
+        <div className="mt-2">
+          <input onChange={(e) => setUrl(e.target.value)} name="url" id="url" type="text" className="h-10 w-full p-3" />
+        </div>
+        {/*  */}
+        <div className="mt-8">
+          <label className="text-xl text-white" htmlFor="content">
+            説明
+          </label>
+        </div>
+        <div className="mt-2">
+          <textarea
+            onChange={(e) => setContent(e.target.value)}
+            name="content"
+            id="content"
+            className="h-48 w-full p-3"
           />
-        </div> */}
-        <select name="category" id="category" onChange={(e) => setCategory(e.target.value)}>
-          <option value="">--choose category--</option>
-          <option value="JOBCHANGE">転職</option>
-          <option value="INVEST">投資</option>
-        </select>
-        {/*  */}
-        <div className="">
-          <label htmlFor="title">title</label>
-        </div>
-        <div className="">
-          <input onChange={(e) => setTitle(e.target.value)} name="title" id="title" type="text" className="" />
         </div>
         {/*  */}
-        <div className="">
-          <label htmlFor="url">url</label>
-        </div>
-        <div className="">
-          <input onChange={(e) => setUrl(e.target.value)} name="url" id="url" type="text" className="" />
-        </div>
-        {/*  */}
-        <div className="">
-          <label htmlFor="content">content</label>
-        </div>
-        <div className="">
-          <textarea onChange={(e) => setContent(e.target.value)} name="content" id="content" className="" />
-        </div>
-        {/*  */}
-        <button type="submit">send</button>
+        <button
+          className="mt-12 ml-auto mr-auto flex w-64 justify-center bg-yellow-600 px-8 py-4 text-xl text-white"
+          type="submit"
+        >
+          投稿する
+        </button>
       </form>
-    </div>
+    </Layout>
   );
 };
