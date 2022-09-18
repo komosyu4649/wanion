@@ -5,6 +5,7 @@ export const PostForm = () => {
   const [title, setTitle] = useState('');
   const [url, setUrl] = useState('');
   const [content, setContent] = useState('');
+  const [category, setCategory] = useState('');
   const [APIResponse, setAPIResponse] = useState(null);
 
   const router = useRouter();
@@ -13,8 +14,9 @@ export const PostForm = () => {
     console.log('title', title);
     console.log('url', url);
     console.log('content', content);
+    console.log('category', category);
     console.log('APIResponse', APIResponse);
-  }, [title, url, content, APIResponse]);
+  }, [title, url, content, category, APIResponse]);
 
   const readDB = async () => {
     try {
@@ -35,7 +37,7 @@ export const PostForm = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const body = { title, url, content };
+    const body = { title, url, content, category };
     try {
       const res = await fetch('/api/post', {
         method: 'POST',
@@ -56,13 +58,33 @@ export const PostForm = () => {
 
   const resetForm = () => {
     setTitle('');
+    setUrl('');
     setContent('');
+    setCategory('');
     router.replace(router.asPath);
   };
 
   return (
     <div>
       <form onSubmit={(e) => handleSubmit(e)} action="" method="POST" className="">
+        {/*  */}
+        <div className="">
+          <label htmlFor="category">category</label>
+        </div>
+        {/* <div className="">
+          <input
+            onChange={(e) => setCategories(e.target.value)}
+            name="categories"
+            id="categories"
+            type="text"
+            className=""
+          />
+        </div> */}
+        <select name="category" id="category" onChange={(e) => setCategory(e.target.value)}>
+          <option value="">--choose category--</option>
+          <option value="JOBCHANGE">転職</option>
+          <option value="INVEST">投資</option>
+        </select>
         {/*  */}
         <div className="">
           <label htmlFor="title">title</label>

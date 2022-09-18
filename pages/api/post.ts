@@ -12,15 +12,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 }
 
 async function addPost(req: NextApiRequest, res: NextApiResponse) {
-  const body = req.body;
+  const { title, url, content, category } = req.body;
   try {
     const newEntry = await prisma.post.create({
       data: {
-        title: body.title,
-        url: body.url,
-        content: body.content
+        title: title,
+        url: url,
+        content: content,
+        category: category
       }
     });
+
     return res.status(200).json(newEntry, { success: true });
   } catch (error) {
     console.error('request error', error);
