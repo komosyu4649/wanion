@@ -6,6 +6,7 @@ export type allPostsType = {
       url: string;
       content: string;
       category: string;
+      createdAt: string;
     }
   ];
 };
@@ -17,6 +18,7 @@ export type postsType = {
     url: string;
     content: string;
     category: string;
+    createdAt: string;
   };
 };
 
@@ -26,4 +28,5 @@ export type postType = {
   url: string;
   content: string;
   category: string;
+  createdAt: string;
 };

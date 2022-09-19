@@ -50,6 +50,7 @@ export const PostForm = () => {
       } else {
         resetForm();
         readDB();
+        router.push('/');
         console.log('success');
       }
     } catch (error) {
