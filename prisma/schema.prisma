@@ -9,13 +9,13 @@ datasource db {
   referentialIntegrity = "prisma"
 }
 
+// createdAt DateTime     @default(now())
 model Post {
-  id        Int          @default(autoincrement()) @id
-  title     String
-  url       String
-  content   String
-  category  CategoryType @default(INVEST)
-  createdAt DateTime     @default(now())
+  id       Int          @default(autoincrement()) @id
+  title    String
+  url      String
+  content  String
+  category CategoryType @default(INVEST)
 }
 
 enum CategoryType {

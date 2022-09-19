@@ -5,6 +5,7 @@ import { allPostsType } from '../type';
 import { Layout } from '../components/Layout';
 
 const Home: NextPage<allPostsType> = ({ posts }: allPostsType) => {
+  // console.log(...posts);
   return (
     <Layout title="top">
       <Timeline posts={posts} />
@@ -21,8 +22,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
       title: true,
       url: true,
       content: true,
-      category: true,
-      createdAt: true
+      category: true
+      // createdAt: true
     }
   });
   posts.sort(function (a, b) {
@@ -31,6 +32,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
       posts: JSON.parse(JSON.stringify(posts))
+      // posts: posts
     }
   };
 };
