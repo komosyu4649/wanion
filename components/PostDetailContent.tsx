@@ -6,6 +6,7 @@ const PostDetailContent = (postData: any) => {
   const refreshData = () => {
     router.push('/');
   };
+
   const deletePost = async (id: number) => {
     const body = { id };
     try {
@@ -25,6 +26,24 @@ const PostDetailContent = (postData: any) => {
     }
   };
 
+  const updatePost = async (id: number) => {
+    const body = { id };
+    try {
+      const res = await fetch('/api/post', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      if (res.status !== 200) {
+        console.log('something went wrong');
+      } else {
+        console.log('success');
+      }
+    } catch (error) {
+      console.log('something went wrong', error);
+    }
+  };
+
   return (
     <section className="relative rounded-xl bg-zinc-700 p-10 text-white">
       <span className="absolute -top-4 left-2 rounded-full bg-yellow-600 px-4 py-2 text-base">
@@ -37,6 +56,7 @@ const PostDetailContent = (postData: any) => {
         {postData.props.createdAt.substring(0, postData.props.createdAt.indexOf('T')).replace(/-/g, '/')}
       </time>
       <button onClick={() => deletePost(postData.props.id)}>delete</button>
+      <button onClick={() => updatePost(postData.props.id)}>update</button>
     </section>
   );
 };

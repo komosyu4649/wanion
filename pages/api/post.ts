@@ -8,6 +8,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return await readPosts(req, res);
   } else if (req.method === 'DELETE') {
     return await deletePost(req, res);
+  } else if (req.method === 'PUT') {
+    return await updatePost(req, res);
   } else {
     return res.status(405).json({ message: 'method not allowed', success: false });
   }
@@ -58,5 +60,20 @@ async function deletePost(req: NextApiRequest, res: NextApiResponse) {
       }
     });
     return res.status(200).json(postDelete);
+  } catch (error) {}
+}
+
+async function updatePost(req: NextApiRequest, res: NextApiResponse) {
+  const { id } = req.body;
+  try {
+    const postUpdate = await prisma.post.update({
+      where: {
+        id: id
+      },
+      data: {
+        title: 'test'
+      }
+    });
+    return res.status(200).json(postUpdate);
   } catch (error) {}
 }
