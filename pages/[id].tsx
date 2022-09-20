@@ -35,7 +35,8 @@ export const getStaticProps: GetStaticProps<any> = async (context: any) => {
   });
   return {
     props: {
-      post: res
+      // post: res
+      post: JSON.parse(JSON.stringify(res))
     }
   };
 };

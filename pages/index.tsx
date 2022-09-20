@@ -5,7 +5,6 @@ import { allPostsType } from '../type';
 import { Layout } from '../components/Layout';
 
 const Home: NextPage<allPostsType> = ({ posts }: allPostsType) => {
-  // console.log(...posts);
   return (
     <Layout title="top">
       <Timeline posts={posts} />
