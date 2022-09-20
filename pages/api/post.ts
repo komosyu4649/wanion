@@ -64,14 +64,17 @@ async function deletePost(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function updatePost(req: NextApiRequest, res: NextApiResponse) {
-  const { id } = req.body;
+  const { id, title, url, content, category } = req.body;
   try {
     const postUpdate = await prisma.post.update({
       where: {
         id: id
       },
       data: {
-        title: 'test'
+        title: title,
+        url: url,
+        content: content,
+        category: category
       }
     });
     return res.status(200).json(postUpdate);

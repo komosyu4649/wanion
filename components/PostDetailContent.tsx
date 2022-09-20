@@ -27,6 +27,7 @@ const PostDetailContent = (postData: any) => {
   };
 
   const updatePost = async (id: number) => {
+    router.push("/post")
     const body = { id };
     try {
       const res = await fetch('/api/post', {
