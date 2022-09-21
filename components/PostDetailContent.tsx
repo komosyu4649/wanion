@@ -27,7 +27,7 @@ const PostDetailContent = (postData: any) => {
   };
 
   const updatePost = async (id: number) => {
-    router.push("/post")
+    router.push('/post');
     const body = { id };
     try {
       const res = await fetch('/api/post', {
@@ -36,12 +36,12 @@ const PostDetailContent = (postData: any) => {
         body: JSON.stringify(body)
       });
       if (res.status !== 200) {
-        console.log('something went wrong');
+        console.log('update: something went wrong');
       } else {
-        console.log('success');
+        console.log('update: success', body);
       }
     } catch (error) {
-      console.log('something went wrong', error);
+      console.log('update: something went wrong', error);
     }
   };
 
@@ -53,11 +53,11 @@ const PostDetailContent = (postData: any) => {
       <h2 className="mt-2 mb-4 text-2xl font-bold">{postData.props.title}</h2>
       <p className="text-base">情報もと：{postData.props.url}</p>
       <p className="mt-6 mb-8 whitespace-pre-wrap text-base">{postData.props.content}</p>
+      <button onClick={() => deletePost(postData.props.id)}>削除</button>
+      <button onClick={() => updatePost(postData.props.id)}>編集</button>
       <time className=" ">
         {postData.props.createdAt.substring(0, postData.props.createdAt.indexOf('T')).replace(/-/g, '/')}
       </time>
-      <button onClick={() => deletePost(postData.props.id)}>delete</button>
-      <button onClick={() => updatePost(postData.props.id)}>update</button>
     </section>
   );
 };
