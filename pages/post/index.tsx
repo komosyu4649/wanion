@@ -1,11 +1,12 @@
 import React from 'react';
 import { PostForm } from '../../components/PostForm';
+import { Layout } from '../../components/Layout';
 
 const post = () => {
   return (
-    <div>
+    <Layout title="form">
       <PostForm />
-    </div>
+    </Layout>
   );
 };
 

@@ -2,8 +2,9 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Layout } from './Layout';
 
-export const PostForm = () => {
-  const [title, setTitle] = useState('');
+export const PostForm = (postData: any) => {
+  console.log(postData.props);
+  const [title, setTitle] = useState(postData.props.title);
   const [url, setUrl] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
@@ -41,7 +42,7 @@ export const PostForm = () => {
     const body = { title, url, content, category };
     try {
       const res = await fetch('/api/post', {
-        method: 'POST',
+        method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
       });
@@ -67,65 +68,64 @@ export const PostForm = () => {
   };
 
   return (
-    <Layout title="form">
-      <form onSubmit={(e) => handleSubmit(e)} action="" method="POST" className="rounded-xl bg-zinc-700 p-10">
-        {/*  */}
-        <div className="flex flex-col">
-          <label className="text-xl text-white" htmlFor="category">
-            カテゴリー
-          </label>
-          <select className="mt-2 h-10" name="category" id="category" onChange={(e) => setCategory(e.target.value)}>
-            <option value="">--choose category--</option>
-            <option value="JOBCHANGE">転職</option>
-            <option value="INVEST">投資</option>
-          </select>
-        </div>
-        {/*  */}
-        <div className="mt-8">
-          <label className="text-xl text-white" htmlFor="title">
-            タイトル
-          </label>
-          <div className="mt-2">
-            <input
-              onChange={(e) => setTitle(e.target.value)}
-              name="title"
-              id="title"
-              type="text"
-              className="h-10 w-full p-3"
-            />
-          </div>
-        </div>
-        {/*  */}
-        <div className="mt-8">
-          <label className="text-xl text-white" htmlFor="url">
-            参考url
-          </label>
-        </div>
+    <form onSubmit={(e) => handleSubmit(e)} action="" method="POST" className="rounded-xl bg-zinc-700 p-10">
+      {/*  */}
+      <div className="flex flex-col">
+        <label className="text-xl text-white" htmlFor="category">
+          カテゴリー
+        </label>
+        <select className="mt-2 h-10" name="category" id="category" onChange={(e) => setCategory(e.target.value)}>
+          <option value="">--choose category--</option>
+          <option value="JOBCHANGE">転職</option>
+          <option value="INVEST">投資</option>
+        </select>
+      </div>
+      {/*  */}
+      <div className="mt-8">
+        <label className="text-xl text-white" htmlFor="title">
+          タイトル
+        </label>
         <div className="mt-2">
-          <input onChange={(e) => setUrl(e.target.value)} name="url" id="url" type="text" className="h-10 w-full p-3" />
-        </div>
-        {/*  */}
-        <div className="mt-8">
-          <label className="text-xl text-white" htmlFor="content">
-            説明
-          </label>
-        </div>
-        <div className="mt-2">
-          <textarea
-            onChange={(e) => setContent(e.target.value)}
-            name="content"
-            id="content"
-            className="h-48 w-full p-3"
+          <input
+            onChange={(e) => setTitle(e.target.value)}
+            value={title}
+            name="title"
+            id="title"
+            type="text"
+            className="h-10 w-full p-3"
           />
         </div>
-        {/*  */}
-        <button
-          className="mt-12 ml-auto mr-auto flex w-64 justify-center bg-yellow-600 px-8 py-4 text-xl text-white"
-          type="submit"
-        >
-          投稿する
-        </button>
-      </form>
-    </Layout>
+      </div>
+      {/*  */}
+      <div className="mt-8">
+        <label className="text-xl text-white" htmlFor="url">
+          参考url
+        </label>
+      </div>
+      <div className="mt-2">
+        <input onChange={(e) => setUrl(e.target.value)} name="url" id="url" type="text" className="h-10 w-full p-3" />
+      </div>
+      {/*  */}
+      <div className="mt-8">
+        <label className="text-xl text-white" htmlFor="content">
+          説明
+        </label>
+      </div>
+      <div className="mt-2">
+        <textarea
+          onChange={(e) => setContent(e.target.value)}
+          name="content"
+          id="content"
+          className="h-48 w-full p-3"
+        />
+      </div>
+      {/*  */}
+      <button
+        className="mt-12 ml-auto mr-auto flex w-64 justify-center bg-yellow-600 px-8 py-4 text-xl text-white"
+        type="submit"
+      >
+        投稿する
+      </button>
+    </form>
   );
 };

@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 
@@ -54,7 +55,10 @@ const PostDetailContent = (postData: any) => {
       <p className="text-base">情報もと：{postData.props.url}</p>
       <p className="mt-6 mb-8 whitespace-pre-wrap text-base">{postData.props.content}</p>
       <button onClick={() => deletePost(postData.props.id)}>削除</button>
-      <button onClick={() => updatePost(postData.props.id)}>編集</button>
+      {/* <button onClick={() => updatePost(postData.props.id)}>編集</button> */}
+      <Link href={`/post/${postData.props.id}/`}>
+        <a>編集</a>
+      </Link>
       <time className=" ">
         {postData.props.createdAt.substring(0, postData.props.createdAt.indexOf('T')).replace(/-/g, '/')}
       </time>
