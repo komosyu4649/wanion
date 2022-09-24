@@ -74,6 +74,8 @@ export const PostForm = (postData: any | null) => {
     // router.replace(router.asPath);
   };
 
+  console.log(existingPost);
+
   return (
     <form
       onSubmit={(e) => handleSubmit(e)}
@@ -88,8 +90,12 @@ export const PostForm = (postData: any | null) => {
         </label>
         <select className="mt-2 h-10" name="category" id="category" onChange={(e) => setCategory(e.target.value)}>
           <option value="">--choose category--</option>
-          <option value="JOBCHANGE">転職</option>
-          <option value="INVEST">投資</option>
+          <option value="JOBCHANGE" selected={existingPost.category === 'JOBCHANGE'}>
+            転職
+          </option>
+          <option value="INVEST" selected={existingPost.category === 'INVEST'}>
+            投資
+          </option>
         </select>
       </div>
       {/*  */}

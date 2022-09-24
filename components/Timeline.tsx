@@ -7,6 +7,7 @@ const Timeline = ({ posts }: allPostsType) => {
   return (
     <ul className="grid gap-y-12">
       {posts.map((post: postType) => (
+        // console.log(post.id),
         <PostItem post={post} key={post.id} />
       ))}
     </ul>

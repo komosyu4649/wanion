@@ -2,9 +2,10 @@ import Link from 'next/link';
 import React from 'react';
 import { postType } from '../type';
 
-const PostItem = ({ post, key }: { post: postType; key: number }) => {
+const PostItem = ({ post }: { post: postType }) => {
+  // console.log(post.id);
   return (
-    <li key={key} className="relative rounded-xl bg-zinc-700 text-white">
+    <li key={post.id} className="relative rounded-xl bg-zinc-700 text-white">
       <Link href={`/${post.id}`}>
         <a className="block p-10">
           <span className="absolute -top-4 left-2 rounded-full bg-yellow-600 px-4 py-2 text-base">{post.category}</span>
