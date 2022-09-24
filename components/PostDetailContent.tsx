@@ -1,8 +1,10 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { postPropsType } from '../type';
 
-const PostDetailContent = (postData: any) => {
+const PostDetailContent = (postData: postPropsType) => {
+  // console.log(postData);
   const router = useRouter();
   const refreshData = () => {
     router.push('/');

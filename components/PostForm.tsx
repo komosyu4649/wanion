@@ -1,9 +1,10 @@
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
+import { postPropsType } from '../type';
 import { Layout } from './Layout';
 
-export const PostForm = (postData: any | null) => {
-  const existingPost = postData.props;
+export const PostForm = (postData: postPropsType | null) => {
+  const existingPost = postData?.props;
   const id = existingPost ? existingPost.id : '';
   const [title, setTitle] = useState(existingPost ? existingPost.title : '');
   const [url, setUrl] = useState(existingPost ? existingPost.url : '');
@@ -74,8 +75,6 @@ export const PostForm = (postData: any | null) => {
     // router.replace(router.asPath);
   };
 
-  console.log(existingPost);
-
   return (
     <form
       onSubmit={(e) => handleSubmit(e)}
@@ -88,14 +87,22 @@ export const PostForm = (postData: any | null) => {
         <label className="text-xl text-white" htmlFor="category">
           カテゴリー
         </label>
-        <select className="mt-2 h-10" name="category" id="category" onChange={(e) => setCategory(e.target.value)}>
+        <select
+          className="mt-2 h-10"
+          name="category"
+          id="category"
+          value={existingPost?.category}
+          onChange={(e) => setCategory(e.target.value)}
+        >
           <option value="">--choose category--</option>
-          <option value="JOBCHANGE" selected={existingPost.category === 'JOBCHANGE'}>
+          {/* <option defaultValue="JOBCHANGE" selected={existingPost?.category === 'JOBCHANGE'}>
             転職
           </option>
-          <option value="INVEST" selected={existingPost.category === 'INVEST'}>
+          <option defaultValue="INVEST" selected={existingPost?.category === 'INVEST'}>
             投資
-          </option>
+          </option> */}
+          <option value="JOBCHANGE">転職</option>
+          <option value="INVEST">投資</option>
         </select>
       </div>
       {/*  */}

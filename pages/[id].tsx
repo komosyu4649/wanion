@@ -3,14 +3,15 @@ import React from 'react';
 import { Layout } from '../components/Layout';
 import PostDetailContent from '../components/PostDetailContent';
 import prisma from '../lib/prisma';
+import { postType } from '../type';
 
 type PathParams = {
   id: string;
 };
 
-type PageProps = {
-  title: string;
-};
+// type PageProps = {
+//   title: string;
+// };
 
 export const getStaticPaths: GetStaticPaths<PathParams> = async () => {
   const res = await prisma.post.findMany();
@@ -33,6 +34,7 @@ export const getStaticProps: GetStaticProps<any> = async (context: any) => {
       id: number
     }
   });
+  console.log(JSON.parse(JSON.stringify(res)));
   return {
     props: {
       // post: res
@@ -41,7 +43,8 @@ export const getStaticProps: GetStaticProps<any> = async (context: any) => {
   };
 };
 
-const PostDetail: React.FC<PageProps> = ({ post }: any) => {
+const PostDetail: React.FC<postType[]> = ({ post }) => {
+  console.log(post);
   const [postData] = post;
   return (
     <Layout title={postData.title}>

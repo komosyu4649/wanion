@@ -1,7 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import React from 'react';
 import { Layout } from '../../components/Layout';
-import PostDetailContent from '../../components/PostDetailContent';
 import { PostForm } from '../../components/PostForm';
 import prisma from '../../lib/prisma';
 
