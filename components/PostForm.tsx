@@ -2,13 +2,17 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Layout } from './Layout';
 
-export const PostForm = () => {
-  // console.log(postData.props);
-  // const [title, setTitle] = useState(postData.props.title);
-  const [title, setTitle] = useState('');
-  const [url, setUrl] = useState('');
-  const [content, setContent] = useState('');
-  const [category, setCategory] = useState('');
+export const PostForm = (postData: any | null) => {
+  const existingPost = postData.props;
+  const id = existingPost ? existingPost.id : '';
+  const [title, setTitle] = useState(existingPost ? existingPost.title : '');
+  const [url, setUrl] = useState(existingPost ? existingPost.url : '');
+  const [content, setContent] = useState(existingPost ? existingPost.content : '');
+  const [category, setCategory] = useState(existingPost ? existingPost.category : '');
+  // const [title, setTitle] = useState('');
+  // const [url, setUrl] = useState('');
+  // const [content, setContent] = useState('');
+  // const [category, setCategory] = useState('');
   const [APIResponse, setAPIResponse] = useState(null);
 
   const router = useRouter();
@@ -40,13 +44,15 @@ export const PostForm = () => {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const body = { title, url, content, category };
+    const body = { id, title, url, content, category };
     try {
       const res = await fetch('/api/post', {
-        method: 'PUT',
+        method: existingPost ? 'PUT' : 'POST',
+        // method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body)
       });
+      console.log(res);
       if (res.status !== 200) {
         console.log('something went wrong');
       } else {
@@ -65,11 +71,16 @@ export const PostForm = () => {
     setUrl('');
     setContent('');
     setCategory('');
-    router.replace(router.asPath);
+    // router.replace(router.asPath);
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)} action="" method="POST" className="rounded-xl bg-zinc-700 p-10">
+    <form
+      onSubmit={(e) => handleSubmit(e)}
+      action=""
+      method={existingPost ? 'PUT' : 'POST'}
+      className="rounded-xl bg-zinc-700 p-10"
+    >
       {/*  */}
       <div className="flex flex-col">
         <label className="text-xl text-white" htmlFor="category">
@@ -104,7 +115,14 @@ export const PostForm = () => {
         </label>
       </div>
       <div className="mt-2">
-        <input onChange={(e) => setUrl(e.target.value)} name="url" id="url" type="text" className="h-10 w-full p-3" />
+        <input
+          onChange={(e) => setUrl(e.target.value)}
+          value={url}
+          name="url"
+          id="url"
+          type="text"
+          className="h-10 w-full p-3"
+        />
       </div>
       {/*  */}
       <div className="mt-8">
@@ -115,6 +133,7 @@ export const PostForm = () => {
       <div className="mt-2">
         <textarea
           onChange={(e) => setContent(e.target.value)}
+          value={content}
           name="content"
           id="content"
           className="h-48 w-full p-3"
