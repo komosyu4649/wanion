@@ -27,7 +27,7 @@ async function createPost(req: NextApiRequest, res: NextApiResponse) {
         // createdAt: createdAt
       }
     });
-    return res.status(200).json(newEntry, { success: true });
+    return res.status(200).json(newEntry);
   } catch (error) {
     console.error('request error', error);
     res.status(500).json({ error: 'error adding post', success: false });
@@ -44,7 +44,7 @@ async function readPosts(req: NextApiRequest, res: NextApiResponse) {
       //   }
       // }
     });
-    return res.status(200).json(allPosts, { success: true });
+    return res.status(200).json(allPosts);
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: 'error reading from db', success: false });

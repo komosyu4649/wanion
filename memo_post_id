@@ -46,8 +46,7 @@ const PostDetail: React.FC<PageProps> = ({ post }: any) => {
   const [postData] = post;
   return (
     <Layout title={postData.title}>
-      {/* <PostForm props={postData} /> */}
-      <PostForm />
+      <PostForm props={postData} />
     </Layout>
   );
 };

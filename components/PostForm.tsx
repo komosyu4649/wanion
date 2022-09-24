@@ -2,9 +2,10 @@ import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 import { Layout } from './Layout';
 
-export const PostForm = (postData: any) => {
-  console.log(postData.props);
-  const [title, setTitle] = useState(postData.props.title);
+export const PostForm = () => {
+  // console.log(postData.props);
+  // const [title, setTitle] = useState(postData.props.title);
+  const [title, setTitle] = useState('');
   const [url, setUrl] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
