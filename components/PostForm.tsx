@@ -3,7 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { postPropsType } from '../type';
 import { Layout } from './Layout';
 
-export const PostForm = (postData: postPropsType | null) => {
+export const PostForm = (postData?: postPropsType) => {
+  // console.log(postData);
   const existingPost = postData?.props;
   const id = existingPost ? existingPost.id : '';
   const [title, setTitle] = useState(existingPost ? existingPost.title : '');
@@ -43,7 +44,7 @@ export const PostForm = (postData: postPropsType | null) => {
     }
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     const body = { id, title, url, content, category };
     try {

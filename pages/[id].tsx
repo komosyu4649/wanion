@@ -1,9 +1,10 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps, GetStaticPropsResult } from 'next';
 import React from 'react';
 import { Layout } from '../components/Layout';
 import PostDetailContent from '../components/PostDetailContent';
 import prisma from '../lib/prisma';
 import { postType } from '../type';
+import { ParsedUrlQuery } from 'querystring';
 
 type PathParams = {
   id: string;
@@ -13,7 +14,16 @@ type PathParams = {
 //   title: string;
 // };
 
-export const getStaticPaths: GetStaticPaths<PathParams> = async () => {
+type Props = {
+  // post : PostData
+  post: any;
+};
+
+interface Params extends ParsedUrlQuery {
+  id: string;
+}
+
+export const getStaticPaths: GetStaticPaths<Params> = async () => {
   const res = await prisma.post.findMany();
   const paths = res.map((path: any) => {
     return {
@@ -26,8 +36,10 @@ export const getStaticPaths: GetStaticPaths<PathParams> = async () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<any> = async (context: any) => {
-  const id = context.params.id;
+// export const getStaticProps: GetStaticProps<Props, Params> = async (context) => {
+export const getStaticProps: GetStaticProps<Props, Params> = async (context) => {
+  console.log(context);
+  const id = context.params!.id;
   const number = Number(id);
   const res = await prisma.post.findMany({
     where: {
@@ -43,8 +55,7 @@ export const getStaticProps: GetStaticProps<any> = async (context: any) => {
   };
 };
 
-const PostDetail: React.FC<postType[]> = ({ post }) => {
-  console.log(post);
+const PostDetail: React.FC<Props> = ({ post }) => {
   const [postData] = post;
   return (
     <Layout title={postData.title}>

@@ -1,4 +1,6 @@
 import React, { FC, ReactNode } from 'react';
+import Footer from './Footer';
+import Header from './Header';
 
 type Props = {
   title: string;
@@ -7,8 +9,10 @@ type Props = {
 
 export const Layout: FC<Props> = ({ children, title = 'wanion' }) => {
   return (
-    <div className="flex justify-center bg-zinc-800 py-72">
-      <main className="w-5/12">{children}</main>
+    <div className="flex min-h-screen flex-col items-center bg-zinc-800">
+      <Header />
+      <main className="w-5/12 py-72">{children}</main>
+      <Footer />
     </div>
   );
 };

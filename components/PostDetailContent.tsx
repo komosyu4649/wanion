@@ -4,7 +4,6 @@ import React from 'react';
 import { postPropsType } from '../type';
 
 const PostDetailContent = (postData: postPropsType) => {
-  // console.log(postData);
   const router = useRouter();
   const refreshData = () => {
     router.push('/');
