@@ -3,10 +3,13 @@ import prisma from '../lib/prisma';
 import Timeline from '../components/Timeline';
 import { allPostsType } from '../type';
 import { Layout } from '../components/Layout';
+import CategoryNav from '../components/CategoryNav';
 
 const Home: NextPage<allPostsType> = ({ posts }: allPostsType) => {
+  // console.log(posts);
   return (
     <Layout title="top">
+      <CategoryNav posts={posts} />
       <Timeline posts={posts} />
     </Layout>
   );
