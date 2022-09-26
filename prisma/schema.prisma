@@ -17,6 +17,7 @@ model Post {
   content   String
   category  CategoryType @default(INVEST)
   createdAt DateTime     @default(now())
+  @@fulltext([title])
 }
 
 enum CategoryType {

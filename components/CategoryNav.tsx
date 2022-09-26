@@ -1,12 +1,13 @@
 import React from 'react';
-import { useStore } from '../lib/store';
+import { useCategoryStore } from '../lib/store';
 import { allPostsType } from '../type';
 
 const CategoryNav = ({ posts }: allPostsType) => {
   const allCategoryArray = posts.map((post) => post.category);
-  const allCategory = [...new Set(allCategoryArray)];
+  let allCategory = [...new Set(allCategoryArray)];
+  allCategory.unshift('ALL');
 
-  const store = useStore((state) => state);
+  const store = useCategoryStore((state) => state);
   const changeCategory = (category: string) => {
     store.setCategory(category);
   };

@@ -2,7 +2,7 @@ import { GetServerSideProps } from 'next';
 import React, { useEffect, useState } from 'react';
 import prisma from '../lib/prisma';
 
-const SearchForm = ({ result }: any) => {
+const SearchForm = (result: any) => {
   const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
@@ -12,12 +12,16 @@ const SearchForm = ({ result }: any) => {
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     try {
-      //   const result = await prisma.post.findMany({
-      //     where: {
-      //       title: 'test'
-      //     }
-      //   });
       console.log(result);
+      // // console.log(prisma);
+      // const result = await prisma.post.findMany({
+      //   where: {
+      //     title: {
+      //       search: searchText
+      //     }
+      //   }
+      // });
+      // // console.log(result, searchText);
     } catch (error) {
       console.log(error);
     }
@@ -42,16 +46,16 @@ const SearchForm = ({ result }: any) => {
 
 export default SearchForm;
 
-export const getServerSideProps: GetServerSideProps = async () => {
-  const result = await prisma.post.findMany({
-    where: {
-      title: 'test'
-    }
-  });
-  console.log(result);
-  return {
-    props: {
-      result: result
-    }
-  };
-};
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const result = await prisma.post.findMany({
+//     where: {
+//       title: 'test'
+//     }
+//   });
+//   console.log(result);
+//   return {
+//     props: {
+//       result: result
+//     }
+//   };
+// };

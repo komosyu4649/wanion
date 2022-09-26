@@ -6,16 +6,11 @@ type Category = {
   setCategory: (category: string) => void;
 };
 
-export const useStore = create<Category>(
-  //   persist(
-  (set) => ({
-    category: '',
-    setCategory: (category: string) =>
-      set((state) => ({
-        ...state,
-        category
-        // return { category: state.category };
-      }))
-  })
-  //   )
-);
+export const useCategoryStore = create<Category>((set) => ({
+  category: '',
+  setCategory: (category: string) =>
+    set((state) => ({
+      ...state,
+      category
+    }))
+}));

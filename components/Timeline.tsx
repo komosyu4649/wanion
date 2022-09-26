@@ -1,10 +1,10 @@
 import React from 'react';
-import { useStore } from '../lib/store';
+import { useCategoryStore } from '../lib/store';
 import { allPostsType, postType } from '../type';
 import PostItem from './PostItem';
 
 const Timeline = ({ posts }: allPostsType) => {
-  const store = useStore((state) => state);
+  const store = useCategoryStore((state) => state);
   const categoryState = store.category;
   const categoryPost = posts.filter((post) => post.category === categoryState);
   const selectPosts = categoryPost.length === 0 ? posts : categoryPost;
