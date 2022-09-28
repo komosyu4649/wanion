@@ -1,30 +1,31 @@
 import { GetServerSideProps } from 'next';
 import React, { useEffect, useState } from 'react';
 import prisma from '../lib/prisma';
-// import { useSearchTextStore } from '../lib/store';
 
-const SearchForm = (result: any) => {
+const SearchForm = () => {
+  const [APIResponse, setAPIResponse] = useState(null);
   const [searchText, setSearchText] = useState('');
-  // const store = useSearchTextStore((state) => state);
 
   useEffect(() => {
-    console.log(searchText);
-  }, [searchText]);
+    console.log('APIResponse', APIResponse);
+    console.log('searchText', searchText);
+  }, [searchText, APIResponse]);
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
-    // store.setSearchText(searchText);
+    const body = { searchText };
     try {
-      // console.log(result);
-      // // console.log(prisma);
-      // const result = await prisma.post.findMany({
-      //   where: {
-      //     title: {
-      //       search: searchText
-      //     }
-      //   }
-      // });
-      // // console.log(result, searchText);
+      const res = await fetch('/api/search', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body)
+      });
+      setAPIResponse(await res.json());
+      if (res.status !== 200) {
+        console.log('something went wrong');
+      } else {
+        console.log('success');
+      }
     } catch (error) {
       console.log(error);
     }
