@@ -3,13 +3,15 @@ import CategoryNav from '../../components/CategoryNav';
 import { Layout } from '../../components/Layout';
 import SearchForm from '../../components/SearchForm';
 import prisma from '../../lib/prisma';
-import { useSearchTextStore } from '../../lib/store';
-// import { useSearchTextStore } from '../../lib/store';
+import { useSearchResultStore } from '../../lib/store';
 import { allPostsType } from '../../type';
 
 const Search: NextPage<allPostsType> = ({ result }: any) => {
+  const store = useSearchResultStore((state) => state);
+  console.log(store.searchResult);
   // const store = useSearchTextStore((state) => state);
   // console.log(store.searchText);
+  // ここのzustandのグローバルステートはテキストではなくて検索結果を返したい。
   return (
     <Layout title="search">
       <SearchForm />

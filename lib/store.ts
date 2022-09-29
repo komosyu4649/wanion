@@ -7,8 +7,8 @@ type Category = {
   setCategory: (category: string) => void;
 };
 type Search = {
-  searchText: string;
-  setSearchText: (searchText: string) => void;
+  searchResult: string;
+  setSearchResult: (searchResult: string) => void;
 };
 
 export const useCategoryStore = create<Category>((set) => ({
@@ -20,11 +20,11 @@ export const useCategoryStore = create<Category>((set) => ({
     }))
 }));
 
-export const useSearchTextStore = create<Search>((set) => ({
-  searchText: '',
-  setSearchText: (searchText: string) =>
+export const useSearchResultStore = create<Search>((set) => ({
+  searchResult: '',
+  setSearchResult: (searchResult: any) =>
     set((state) => ({
       ...state,
-      searchText
+      searchResult
     }))
 }));

@@ -1,14 +1,20 @@
 import { GetServerSideProps } from 'next';
 import React, { useEffect, useState } from 'react';
 import prisma from '../lib/prisma';
+import { useSearchResultStore } from '../lib/store';
 
 const SearchForm = () => {
-  const [APIResponse, setAPIResponse] = useState(null);
+  const [APIResponse, setAPIResponse] = useState([]);
   const [searchText, setSearchText] = useState('');
 
+  const store = useSearchResultStore((state) => state);
+  const resultSearch = (response: any) => {
+    store.setSearchResult(response);
+  };
+
   useEffect(() => {
-    console.log('APIResponse', APIResponse);
-    console.log('searchText', searchText);
+    // console.log('APIResponse', APIResponse);
+    // console.log('searchText', searchText);
   }, [searchText, APIResponse]);
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
@@ -24,7 +30,8 @@ const SearchForm = () => {
       if (res.status !== 200) {
         console.log('something went wrong');
       } else {
-        console.log('success');
+        console.log('success', APIResponse);
+        resultSearch(APIResponse);
       }
     } catch (error) {
       console.log(error);
