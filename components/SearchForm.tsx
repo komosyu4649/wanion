@@ -39,7 +39,7 @@ const SearchForm = () => {
   };
 
   return (
-    <div>
+    <div className="mb-12">
       <form onSubmit={(e) => handleSubmit(e)} action="" className="">
         <input
           onChange={(e) => setSearchText(e.target.value)}
@@ -49,7 +49,9 @@ const SearchForm = () => {
           type="text"
           className="h-10 w-full p-3"
         />
-        <button type="submit">検索</button>
+        <button type="submit" className="">
+          検索
+        </button>
       </form>
     </div>
   );
