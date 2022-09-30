@@ -11,9 +11,10 @@ const SearchForm = () => {
   const resultSearch = (response: any) => {
     store.setSearchResult(response);
   };
+  // console.log(1, APIResponse);
 
   useEffect(() => {
-    // console.log('APIResponse', APIResponse);
+    console.log('APIResponse', APIResponse);
     // console.log('searchText', searchText);
   }, [searchText, APIResponse]);
 
@@ -39,7 +40,7 @@ const SearchForm = () => {
   };
 
   return (
-    <div className="mb-12">
+    <div className="mb-16">
       <form onSubmit={(e) => handleSubmit(e)} action="" className="">
         <input
           onChange={(e) => setSearchText(e.target.value)}
