@@ -16,6 +16,7 @@ const SearchForm = () => {
   useEffect(() => {
     console.log('APIResponse', APIResponse);
     // console.log('searchText', searchText);
+    resultSearch(APIResponse);
   }, [searchText, APIResponse]);
 
   const handleSubmit = async (e: React.SyntheticEvent) => {
