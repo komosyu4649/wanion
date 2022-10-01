@@ -1,14 +1,15 @@
 import { useMemo } from 'react';
 import create from 'zustand';
 import { persist } from 'zustand/middleware';
+import { postType } from '../type';
 
 type Category = {
   category: string;
   setCategory: (category: string) => void;
 };
 type Search = {
-  searchResult: string;
-  setSearchResult: (searchResult: string) => void;
+  searchResult: postType[];
+  setSearchResult: (searchResult: postType[]) => void;
 };
 
 export const useCategoryStore = create<Category>((set) => ({
@@ -21,8 +22,8 @@ export const useCategoryStore = create<Category>((set) => ({
 }));
 
 export const useSearchResultStore = create<Search>((set) => ({
-  searchResult: '',
-  setSearchResult: (searchResult: any) =>
+  searchResult: [],
+  setSearchResult: (searchResult: postType[]) =>
     set((state) => ({
       ...state,
       searchResult

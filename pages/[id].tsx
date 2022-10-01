@@ -6,26 +6,26 @@ import prisma from '../lib/prisma';
 import { postType } from '../type';
 import { ParsedUrlQuery } from 'querystring';
 
-type PathParams = {
-  id: string;
-};
-
-// type PageProps = {
-//   title: string;
-// };
-
-type Props = {
-  // post : PostData
-  post: any;
+type ContextProps = {
+  post: {
+    params: { id: string };
+    locales: undefined;
+    locale: undefined;
+    defaultLocale: undefined;
+  };
 };
 
 interface Params extends ParsedUrlQuery {
   id: string;
 }
 
+type PostProps = {
+  post: postType[];
+};
+
 export const getStaticPaths: GetStaticPaths<Params> = async () => {
   const res = await prisma.post.findMany();
-  const paths = res.map((path: any) => {
+  const paths = res.map((path) => {
     return {
       params: { id: path.id.toString() }
     };
@@ -36,9 +36,7 @@ export const getStaticPaths: GetStaticPaths<Params> = async () => {
   };
 };
 
-// export const getStaticProps: GetStaticProps<Props, Params> = async (context) => {
-export const getStaticProps: GetStaticProps<Props, Params> = async (context) => {
-  console.log(context);
+export const getStaticProps: GetStaticProps<ContextProps, Params> = async (context) => {
   const id = context.params!.id;
   const number = Number(id);
   const res = await prisma.post.findMany({
@@ -49,13 +47,12 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (context) => 
   console.log(JSON.parse(JSON.stringify(res)));
   return {
     props: {
-      // post: res
       post: JSON.parse(JSON.stringify(res))
     }
   };
 };
 
-const PostDetail: React.FC<Props> = ({ post }) => {
+const PostDetail: React.FC<PostProps> = ({ post }) => {
   const [postData] = post;
   return (
     <Layout title={postData.title}>

@@ -25,7 +25,7 @@ const Header = () => {
         </Link>
         <ul className="flex flex-row">
           {menus.map((menu) => (
-            <li className="">
+            <li className="" key={menu.text}>
               <Link href={menu.href}>
                 <a className="inline-block py-12 px-8 text-base">{menu.text}</a>
               </Link>

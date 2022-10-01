@@ -24,7 +24,6 @@ async function createPost(req: NextApiRequest, res: NextApiResponse) {
         url: url,
         content: content,
         category: category
-        // createdAt: createdAt
       }
     });
     return res.status(200).json(newEntry);
@@ -35,15 +34,8 @@ async function createPost(req: NextApiRequest, res: NextApiResponse) {
 }
 
 async function readPosts(req: NextApiRequest, res: NextApiResponse) {
-  const body = req.body;
   try {
-    const allPosts = await prisma.post.findMany({
-      // orderBy: {
-      //   createdAt: {
-      //     sort: 'asc'
-      //   }
-      // }
-    });
+    const allPosts = await prisma.post.findMany({});
     return res.status(200).json(allPosts);
   } catch (error) {
     console.log(error);
@@ -72,7 +64,6 @@ async function updatePost(req: NextApiRequest, res: NextApiResponse) {
         id: id
       },
       data: {
-        // id: id,
         title: title,
         url: url,
         content: content,

@@ -6,7 +6,6 @@ import { Layout } from '../components/Layout';
 import CategoryNav from '../components/CategoryNav';
 
 const Home: NextPage<allPostsType> = ({ posts }: allPostsType) => {
-  // console.log(posts);
   return (
     <Layout title="top">
       <CategoryNav posts={posts} />
@@ -34,7 +33,6 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
       posts: JSON.parse(JSON.stringify(posts))
-      // posts: posts
     }
   };
 };

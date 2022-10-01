@@ -3,7 +3,11 @@ import React from 'react';
 import { postType } from '../type';
 import PostItem from './PostItem';
 
-const SearchResult = ({ results }: postType[]) => {
+type Search = {
+  results: postType[];
+};
+
+const SearchResult: React.FC<Search> = ({ results }) => {
   return (
     <div>
       <ul className="grid gap-y-12 px-8">

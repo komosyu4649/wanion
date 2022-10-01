@@ -28,25 +28,6 @@ const PostDetailContent = (postData: postPropsType) => {
     }
   };
 
-  const updatePost = async (id: number) => {
-    router.push('/post');
-    const body = { id };
-    try {
-      const res = await fetch('/api/post', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body)
-      });
-      if (res.status !== 200) {
-        console.log('update: something went wrong');
-      } else {
-        console.log('update: success', body);
-      }
-    } catch (error) {
-      console.log('update: something went wrong', error);
-    }
-  };
-
   return (
     <section className="relative rounded-xl bg-zinc-700 p-10 text-white">
       <time className="text-sm text-zinc-400">
@@ -57,7 +38,7 @@ const PostDetailContent = (postData: postPropsType) => {
       </span>
       <h2 className="mt-4 mb-2 text-2xl font-bold">{postData.props.title}</h2>
       <p className="text-sm">
-        情報もと：{' '}
+        情報もと：
         <a href={postData.props.url} rel="noopener noreferrer" target="_blank" className="border-white-500 border-b-2">
           {postData.props.url}
         </a>
@@ -74,7 +55,6 @@ const PostDetailContent = (postData: postPropsType) => {
           削除
         </button>
       </div>
-      {/* <button onClick={() => updatePost(postData.props.id)}>編集</button> */}
     </section>
   );
 };

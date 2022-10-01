@@ -1,14 +1,13 @@
-import { GetServerSideProps } from 'next';
 import React, { useEffect, useState } from 'react';
-import prisma from '../lib/prisma';
 import { useSearchResultStore } from '../lib/store';
+import { postType } from '../type';
 
 const SearchForm = () => {
   const [APIResponse, setAPIResponse] = useState([]);
   const [searchText, setSearchText] = useState('');
 
   const store = useSearchResultStore((state) => state);
-  const resultSearch = (response: any) => {
+  const resultSearch = (response: postType[]) => {
     store.setSearchResult(response);
   };
 
@@ -47,7 +46,8 @@ const SearchForm = () => {
             name="search"
             id="search"
             type="text"
-            className="h-10 h-full w-full px-3"
+            className="h-10 h-full w-full px-3 text-black"
+            placeholder="例) 年収アップ"
           />
           <button type="submit" className="h-full w-20 bg-yellow-600 text-base text-white">
             検索

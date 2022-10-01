@@ -5,6 +5,7 @@ import { Layout } from '../../components/Layout';
 const post = () => {
   return (
     <Layout title="form">
+      {/* <PostForm props={test} /> */}
       <PostForm props={null} />
     </Layout>
   );

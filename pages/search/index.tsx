@@ -7,12 +7,8 @@ import prisma from '../../lib/prisma';
 import { useSearchResultStore } from '../../lib/store';
 import { allPostsType } from '../../type';
 
-const Search: NextPage<allPostsType> = ({ result }: any) => {
+const Search: NextPage<allPostsType> = () => {
   const store = useSearchResultStore((state) => state);
-  // console.log(9, store.searchResult);
-  // const store = useSearchTextStore((state) => state);
-  // console.log(store.searchText);
-  // ここのzustandのグローバルステートはテキストではなくて検索結果を返したい。
   return (
     <Layout title="search">
       <SearchForm />
@@ -22,21 +18,3 @@ const Search: NextPage<allPostsType> = ({ result }: any) => {
 };
 
 export default Search;
-
-// export const getServerSideProps: GetServerSideProps = async () => {
-//   const store = useSearchTextStore((state) => state);
-//   console.log(store.searchText);
-//   const result = await prisma.post.findMany({
-//     where: {
-//       title: {
-//         search: 'test'
-//       }
-//     }
-//   });
-//   // console.log(result);
-//   return {
-//     props: {
-//       result: JSON.parse(JSON.stringify(result))
-//     }
-//   };
-// };
