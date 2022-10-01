@@ -14,13 +14,13 @@ async function searchPost(req: NextApiRequest, res: NextApiResponse) {
       where: {
         title: {
           search: searchText
+        },
+        content: {
+          search: searchText
+        },
+        url: {
+          search: searchText
         }
-        // content: {
-        //   search: searchText
-        // },
-        // url: {
-        //   search: searchText
-        // }
       }
     });
     console.log(result);

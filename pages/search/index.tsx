@@ -9,7 +9,7 @@ import { allPostsType } from '../../type';
 
 const Search: NextPage<allPostsType> = ({ result }: any) => {
   const store = useSearchResultStore((state) => state);
-  console.log(9, store.searchResult);
+  // console.log(9, store.searchResult);
   // const store = useSearchTextStore((state) => state);
   // console.log(store.searchText);
   // ここのzustandのグローバルステートはテキストではなくて検索結果を返したい。

@@ -11,11 +11,8 @@ const SearchForm = () => {
   const resultSearch = (response: any) => {
     store.setSearchResult(response);
   };
-  // console.log(1, APIResponse);
 
   useEffect(() => {
-    console.log('APIResponse', APIResponse);
-    // console.log('searchText', searchText);
     resultSearch(APIResponse);
   }, [searchText, APIResponse]);
 
