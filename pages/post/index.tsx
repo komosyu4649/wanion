@@ -6,7 +6,7 @@ const post = () => {
   return (
     <Layout title="form">
       {/* <PostForm props={test} /> */}
-      <PostForm props={null} />
+      <PostForm />
     </Layout>
   );
 };

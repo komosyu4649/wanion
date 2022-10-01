@@ -15,13 +15,18 @@ const CategoryNav = ({ posts }: allPostsType) => {
   return (
     <div className="mb-20 border-b-2 border-white px-4">
       <ul className="flex flex-row">
-        {allCategory.map((category) => (
-          <li key={category}>
-            <button className="py-6 px-8 font-semibold text-white" onClick={() => changeCategory(category)}>
-              {category}
-            </button>
-          </li>
-        ))}
+        {allCategory.map(
+          (category) => (
+            console.log(category),
+            (
+              <li key={category}>
+                <button className="py-6 px-8 font-semibold text-white" onClick={() => changeCategory(category)}>
+                  {category}
+                </button>
+              </li>
+            )
+          )
+        )}
       </ul>
     </div>
   );
