@@ -1,4 +1,4 @@
-import { GetStaticPaths, GetStaticProps, GetStaticPropsResult } from 'next';
+import { GetServerSideProps, GetStaticPaths, GetStaticProps, GetStaticPropsResult } from 'next';
 import React from 'react';
 import { Layout } from '../components/Layout';
 import PostDetailContent from '../components/PostDetailContent';
@@ -23,20 +23,20 @@ type PostProps = {
   post: postType[];
 };
 
-export const getStaticPaths: GetStaticPaths<Params> = async () => {
-  const res = await prisma.post.findMany();
-  const paths = res.map((path) => {
-    return {
-      params: { id: path.id.toString() }
-    };
-  });
-  return {
-    paths,
-    fallback: false
-  };
-};
+// export const getStaticPaths: GetStaticPaths<Params> = async () => {
+//   const res = await prisma.post.findMany();
+//   const paths = res.map((path) => {
+//     return {
+//       params: { id: path.id.toString() }
+//     };
+//   });
+//   return {
+//     paths,
+//     fallback: false
+//   };
+// };
 
-export const getStaticProps: GetStaticProps<ContextProps, Params> = async (context) => {
+export const getServerSideProps: GetServerSideProps<ContextProps, Params> = async (context) => {
   const id = context.params!.id;
   const number = Number(id);
   const res = await prisma.post.findMany({
