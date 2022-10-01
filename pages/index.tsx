@@ -6,6 +6,7 @@ import { Layout } from '../components/Layout';
 import CategoryNav from '../components/CategoryNav';
 
 const Home: NextPage<allPostsType> = ({ posts }: allPostsType) => {
+  //
   return (
     <Layout title="top">
       <CategoryNav posts={posts} />
