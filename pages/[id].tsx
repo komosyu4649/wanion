@@ -44,7 +44,6 @@ export const getStaticProps: GetStaticProps<ContextProps, Params> = async (conte
       id: number
     }
   });
-  console.log(JSON.parse(JSON.stringify(res)));
   return {
     props: {
       post: JSON.parse(JSON.stringify(res))
