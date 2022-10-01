@@ -8,8 +8,9 @@ const Timeline = ({ posts }: allPostsType) => {
   const categoryState = store.category;
   const categoryPost = posts.filter((post) => post.category === categoryState);
   const selectPosts = categoryPost.length === 0 ? posts : categoryPost;
+  // console.log(selectPosts);
   return (
-    <ul className="grid gap-y-12">
+    <ul className="grid gap-y-10 px-8">
       {selectPosts.map((post: postType) => (
         <PostItem post={post} key={post.id} />
       ))}

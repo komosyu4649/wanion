@@ -40,17 +40,19 @@ const SearchForm = () => {
   return (
     <div className="mb-16">
       <form onSubmit={(e) => handleSubmit(e)} action="" className="">
-        <input
-          onChange={(e) => setSearchText(e.target.value)}
-          value={searchText}
-          name="search"
-          id="search"
-          type="text"
-          className="h-10 w-full p-3"
-        />
-        <button type="submit" className="">
-          検索
-        </button>
+        <div className="flex h-12 flex-row overflow-hidden rounded-md">
+          <input
+            onChange={(e) => setSearchText(e.target.value)}
+            value={searchText}
+            name="search"
+            id="search"
+            type="text"
+            className="h-10 h-full w-full px-3"
+          />
+          <button type="submit" className="h-full w-20 bg-yellow-600 text-base text-white">
+            検索
+          </button>
+        </div>
       </form>
     </div>
   );

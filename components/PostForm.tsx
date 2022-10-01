@@ -85,11 +85,11 @@ export const PostForm = (postData?: postPropsType) => {
     >
       {/*  */}
       <div className="flex flex-col">
-        <label className="text-xl text-white" htmlFor="category">
+        <label className="text-base text-white" htmlFor="category">
           カテゴリー
         </label>
         <select
-          className="mt-2 h-10"
+          className="mt-2 h-10 rounded-md px-3"
           name="category"
           id="category"
           value={existingPost?.category}
@@ -108,7 +108,7 @@ export const PostForm = (postData?: postPropsType) => {
       </div>
       {/*  */}
       <div className="mt-8">
-        <label className="text-xl text-white" htmlFor="title">
+        <label className="text-base text-white" htmlFor="title">
           タイトル
         </label>
         <div className="mt-2">
@@ -118,14 +118,14 @@ export const PostForm = (postData?: postPropsType) => {
             name="title"
             id="title"
             type="text"
-            className="h-10 w-full p-3"
+            className="h-10 w-full rounded-md px-3"
           />
         </div>
       </div>
       {/*  */}
       <div className="mt-8">
-        <label className="text-xl text-white" htmlFor="url">
-          参考url
+        <label className="text-base text-white" htmlFor="url">
+          参考情報url
         </label>
       </div>
       <div className="mt-2">
@@ -135,12 +135,12 @@ export const PostForm = (postData?: postPropsType) => {
           name="url"
           id="url"
           type="text"
-          className="h-10 w-full p-3"
+          className="h-10 w-full rounded-md px-3"
         />
       </div>
       {/*  */}
       <div className="mt-8">
-        <label className="text-xl text-white" htmlFor="content">
+        <label className="text-base text-white" htmlFor="content">
           説明
         </label>
       </div>
@@ -150,15 +150,15 @@ export const PostForm = (postData?: postPropsType) => {
           value={content}
           name="content"
           id="content"
-          className="h-48 w-full p-3"
+          className="h-48 w-full rounded-md p-3"
         />
       </div>
       {/*  */}
       <button
-        className="mt-12 ml-auto mr-auto flex w-64 justify-center bg-yellow-600 px-8 py-4 text-xl text-white"
+        className="mt-12 ml-auto mr-auto flex w-64 justify-center rounded-md bg-yellow-600 px-8 py-4 text-lg text-white"
         type="submit"
       >
-        投稿する
+        {existingPost ? '更新する' : '投稿する'}
       </button>
     </form>
   );

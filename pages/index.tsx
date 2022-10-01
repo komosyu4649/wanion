@@ -24,8 +24,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
       title: true,
       url: true,
       content: true,
-      category: true
-      // createdAt: true
+      category: true,
+      createdAt: true
     }
   });
   posts.sort(function (a, b) {
